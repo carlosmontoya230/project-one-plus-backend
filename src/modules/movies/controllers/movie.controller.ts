@@ -28,7 +28,6 @@ export class MovieController {
     @Res() resp: Response
   ) {
     try {
-      console.log("ENTRO");
       const list = await this.movieService.findAllByGenres(genres);
       resp.status(HttpStatus.ACCEPTED).json(list);
     } catch (error) {

@@ -9,6 +9,7 @@ export class MovieService {
   baseUrl = environment.URL_BASE;
   apiKey = environment.API_KEY;
   urlImg = environment.URL_IMG;
+  authorization = environment.AUTHORIZATION;
 
   constructor(private readonly httpService: HttpService) {}
 
@@ -53,8 +54,7 @@ export class MovieService {
             {
               headers: {
                 accept: "application/json",
-                Authorization:
-                  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NmZjNGVlN2E3OTA3ODk5NTdmMDc2NTNjOTM0ODNhNiIsInN1YiI6IjY1ZThmYjdlN2M2ZGUzMDE3YzA3OGRmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RgdSgttG4ogLdd12WDu0HpA63s0mScmfavyVzfpYa-U"
+                Authorization: this.authorization
               }
             }
           )

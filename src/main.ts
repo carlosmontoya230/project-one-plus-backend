@@ -8,10 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   const port = process.env.PORT || 3000;
-  app.use((req, res, next) => {
-    console.log("HAPPIER: ", req.method.toUpperCase(), req.originalUrl);
-    return next();
-  });
+
   await app.listen(port);
   app.useGlobalPipes(
     new ValidationPipe({
