@@ -8,7 +8,7 @@ import { validate } from "class-validator";
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post("singUp")
+  @Post("sign-up")
   async singUp(@Body() singUpDto: SingUpDto) {
     try {
       await validate(singUpDto);

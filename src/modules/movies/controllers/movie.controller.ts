@@ -6,10 +6,30 @@ import { MovieService } from "../services/movie.service";
 export class MovieController {
   constructor(private movieService: MovieService) {}
 
-  @Get("list")
-  async getListMovies(@Query() queries, @Res() resp: Response) {
+  @Get("/type/:type/list")
+  async getListMovies(
+    @Param("type") type: string,
+    @Query() queries,
+    @Res() resp: Response
+  ) {
     try {
-      const list = await this.movieService.findAll(queries);
+      const list = await this.movieService.findAll(type, queries);
+      resp.status(HttpStatus.ACCEPTED).json(list);
+    } catch (error) {
+      resp
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ message: "Internal server error", status: false, error });
+    }
+  }
+
+  @Get("/genres/:genres/list")
+  async getListMoviesByGenres(
+    @Param("genres") genres: string,
+    @Res() resp: Response
+  ) {
+    try {
+      console.log("ENTRO");
+      const list = await this.movieService.findAllByGenres(genres);
       resp.status(HttpStatus.ACCEPTED).json(list);
     } catch (error) {
       resp
